@@ -1,6 +1,5 @@
-import type { Pokemon, NamedAPIResourceList, Type } from "pokenode-ts";
+import type { Pokemon, Type } from "pokenode-ts";
 import Image from "next/image";
-import { Fragment } from "react";
 
 export default async function Home({ params }: { params: { type: string } }) {
   const pokemons = await fetch(
@@ -18,20 +17,21 @@ export default async function Home({ params }: { params: { type: string } }) {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+  <div className="flex flex-col items-center py-10">
+    <main className="grid grid-cols-1 sm:grid-cols-3 gap-28">
       {pokeArr.map((mon, index) => (
-        <Fragment key={index}>
-          <h2>{mon.name}</h2>
+        <div key={index} className="w-fit">
+          <h2 className="text-center text-lg uppercase">{mon.name}</h2>
           <Image
-            src={mon.sprites.front_default ?? ""}
+            src={mon.sprites.other?.["official-artwork"].front_default ?? ""}
             alt={mon.name}
             width={200}
             height={200}
-            className="w-80 h-80"
-            style={{ imageRendering: "pixelated" }}
+            className="w-60 h-60"
           />
-        </Fragment>
+        </div>
       ))}
     </main>
+    </div>
   );
 }

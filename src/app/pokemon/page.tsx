@@ -38,7 +38,7 @@ export default async function Home() {
   }
 
   return (
-    <main className="min-h-screen p-24 flex flex-col items-center">
+    <main className="min-h-screen p-4">
       <div className="grid grid-cols-6 grid-flow-row gap-4 pb-10">
         {types.map((type, index) => (
           <Fragment key={index}>
@@ -57,11 +57,11 @@ export default async function Home() {
             <div>
               <h2 className="text-center text-slate-200 text-lg">{mon.name}</h2>
               <Image
-                src={mon.sprites.front_default ?? ""}
+                src={mon.sprites.other?.["official-artwork"].front_default ?? ""}
                 alt={mon.name}
                 width={200}
                 height={200}
-                className="w-80 h-80"
+                className="w-60 h-60"
                 style={{ imageRendering: "pixelated" }}
               />
             </div>
